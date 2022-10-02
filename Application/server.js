@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 
 // Route files
-// const restaurantRoutes = require('./app/routes/restaurant_routes')
+const landlordRoutes = require('./app/routes/landlord_routes')
 const userRoutes = require('./app/routes/user_routes')
 
 // Middleware
@@ -64,9 +64,9 @@ app.use(express.urlencoded({ extended: true }))
 app.use(requestLogger)
 
 // Route files
-// app.use(restaurantRoutes)
+app.use(landlordRoutes)
 app.use(userRoutes)
-// app.use(reviewRoutes)
+
 
 // Error handling middleware - comes after the route middlewares, because it needs to be
 // passed any error messages from them
