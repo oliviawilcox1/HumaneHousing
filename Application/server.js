@@ -64,7 +64,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(requestLogger)
 
 // Route files
-app.use(landlordRoutes)
+// app.use(landlordRoutes)
 app.use(userRoutes)
 
 
