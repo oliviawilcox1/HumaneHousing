@@ -13,3 +13,8 @@ Humane housing is humanizing the exchange between FIP's and property owners by b
 ## Technologies Used
 
 MongoDB, Express, Node
+
+# Figma Link 
+
+The prototype - 
+https://www.figma.com/proto/q1TIi4dxj5J0qlc2sVH3CZ/Humane-Housing?node-id=17%3A1559&scaling=scale-down&page-id=0%3A1&starting-point-node-id=17%3A1559
