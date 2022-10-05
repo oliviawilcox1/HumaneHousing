@@ -23,7 +23,7 @@ const router = express.Router()
 
 
 // *********** POST/Sign Up Route for landlord **************
-router.post('/sign-up', (req, res, next) => {
+router.post('/sign-up2', (req, res, next) => {
 	// start a promise chain, so that any errors will pass to `handle`
 	Promise.resolve(req.body.credentials)
 		// reject any requests where `credentials.password` is not present, or where
@@ -46,13 +46,7 @@ router.post('/sign-up', (req, res, next) => {
 				email: req.body.credentials.email,
                 firstName:   req.body.credentials.firstName,
                 lastName: req.body.credentials.lastName,
-                aboutMe:  req.body.credentials.aboutMe,
                 dateOfBirth:  req.body.credentials.dateOfBirth,
-                socialSecurity: req.body.credentials.socialSecurity,
-                numberOfTenants:  req.body.credentials.numberOfTenants,
-                currentCity:  req.body.credentials.currentCity,
-                currentCountry:  req.body.credentials.currentCountry,
-                desiredZipcode:  req.body.credentials.desiredZipcode,
 				hashedPassword: hash,
 			}
 		})
@@ -67,12 +61,13 @@ router.post('/sign-up', (req, res, next) => {
 
 
 // *********** POST/Sign In Route for landlord **************
-router.post('/sign-in', (req, res, next) => {
+router.post('/sign-in2', (req, res, next) => {
 	const pw = req.body.credentials.password
 	let landlord
 	// find a landlord based on the email that was passed
 	Landlord.findOne({ email: req.body.credentials.email })
 		.then((record) => {
+            console.log(record)
 			// if we didn't find a landlord with that email, send 401
 			if (!record) {
 				throw new BadCredentialsError()
@@ -106,7 +101,7 @@ router.post('/sign-in', (req, res, next) => {
 
 
 // *********** PATCH/Change Password Route for landlord **************
-router.patch('/change-password', requireToken, (req, res, next) => {
+router.patch('/change-password2', requireToken, (req, res, next) => {
 	let landlord
 	// `req.landlord` will be determined by decoding the token payload
 	Landlord.findById(req.landlord.id)
@@ -140,7 +135,7 @@ router.patch('/change-password', requireToken, (req, res, next) => {
 
 
 // *********** DELETE/Log Out Route for landlord **************
-router.delete('/sign-out', requireToken, (req, res, next) => {
+router.delete('/sign-out2', requireToken, (req, res, next) => {
 	// create a new random token for the landlord, invalidating the current one
 	req.landlord.token = crypto.randomBytes(16)
 	// save the token and respond with 204

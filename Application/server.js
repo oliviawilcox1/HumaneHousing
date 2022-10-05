@@ -17,6 +17,7 @@ const db = require('./config/db')
 
 // Configured passport authentication middleware
 const auth = require('./lib/auth')
+const landlord = require('./lib/landlord')
 
 // Server and client ports
 // Used for cors and local port declaration
@@ -52,7 +53,7 @@ app.use(replaceToken)
 
 // Passport authentication middleware
 app.use(auth)
-
+app.use(landlord)
 // `express.json` middleware parses JSON requests into JS objects before they reach the route files.
 // The method `.use` sets up middleware for the Express application
 app.use(express.json())
@@ -64,7 +65,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(requestLogger)
 
 // Route files
-// app.use(landlordRoutes)
+app.use(landlordRoutes)
 app.use(userRoutes)
 
 
